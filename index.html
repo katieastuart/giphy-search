@@ -4,21 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Giphy Search</title>
+    <title>Search Gifs From Your Favorite Shows</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
-    
-    <div id="buttons"></div>
 
-    <form id="show-form">
-        <label for="show-input">Add a show</label>
-        <input type="text" id="show-input"><br>
-  
-        <!-- Button triggers new movie to be added -->
-        <input id="add-show" type="submit" value="Submit">
-      </form>
+    <div class="jumbotron">
+        <h1 class="display-4">Search Gifs From Your Favorite Shows</h1>
+        <p class="lead">Nothing is better than watching your favorite 3 seconds of an episode over...and over..and over...</p>
+        <br>
+        <div id="buttons"></div>
 
-    <div id="gifDisplay"></div>
+        <form id="show-form">
+            <label for="show-input">Add a show</label>
+            <input type="text" id="show-input"><br>
+      
+            <!-- Button triggers new show to be added -->
+            <input class="btn btn-info btn-lg" id="add-show" type="submit" value="Submit">
+        </form>
+    </div>
+
+    <div class="container">
+        <div id="gifDisplay"></div>
+    </div>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     

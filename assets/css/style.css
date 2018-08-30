@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css?family=Patrick+Hand+SC');
+
+.jumbotron {
+    text-align: center;
+    background-image: url("../images/memphis-colorful.png");
+    background-color: #171e4b;
+}
+
+h1, label {
+    font-family: 'Patrick Hand SC', cursive;
+}
+
+button {
+    margin: 5px;
+}
+
+#show-input {
+    margin: 15px;
+}
+
+body {
+    /* background-color: #f1f0e8; */
+}
