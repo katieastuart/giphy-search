@@ -18,6 +18,26 @@ button {
     margin: 15px;
 }
 
-body {
-    /* background-color: #f1f0e8; */
+#gifDisplay {
+    margin-bottom: 25px;
 }
+
+#infoDisplay {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    background-color: #dcdbe9;
+    padding: 25px;
+    border-radius: 25px;
+}
+
+img {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+h1, p {
+    text-align: center;
+}
+
+

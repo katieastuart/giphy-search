@@ -1,4 +1,6 @@
-var shows = ["New Girl", "Parks and Rec", "The Good Place"];
+$("#infoDisplay").hide();
+
+var shows = ["New Girl", "Parks and Recreation", "The Good Place"];
 
 
 //renders buttons
@@ -34,11 +36,11 @@ $("#add-show").on("click", function() {
 //display show gifs
 function displayShowGifs() {
     var show = $(this).attr("data-name");
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + show + "&api_key=dc6zaTOxFJmzC&limit=10";
+    var queryURLGif = "https://api.giphy.com/v1/gifs/search?q=" + show + "&api_key=dc6zaTOxFJmzC&limit=10";
 
     //ajax call to API
     $.ajax ({
-        url: queryURL,
+        url: queryURLGif,
         method: "GET"
     }).then(function(response) {
         console.log(response);
@@ -49,10 +51,10 @@ function displayShowGifs() {
         for(var j = 0; j < results.length; j++) {
             
             //if the rating on the result isn't R or PG-13 create the elements to display the gif on the page
-            if(results[j].rating !== "r" && results[j].rating !== "pg-13") {
+            if(results[j].rating !== "r" && results[j].rating !== "pg-13" && results[j].images.fixed_height_still.width < 400) {
 
                 //create div to hold the gifs
-                var gifDiv = $("<div class='item'>");
+                var gifDiv = $("<div class='item col-lg-4'>");
 
                 //variable to hold the gif rating
                 var rating = results[j].rating
@@ -95,8 +97,65 @@ function displayShowGifs() {
     })
 }
 
+//display show info
+function displayShowInfo() {
+    $("#infoDisplay").show();
+    var show = $(this).attr("data-name");
+    var queryURLInfo = "https://www.omdbapi.com/?t=" + show + "&y=&plot=long&apikey=trilogy";
+
+    $("#infoDisplay").empty();
+
+    //ajax call to API
+    $.ajax ({
+        url: queryURLInfo,
+        method: "GET"
+    }).then(function(response) {
+        console.log(response);
+        console.log(response.Title)
+        console.log(response.Year)
+        console.log(response.Actors)
+        console.log(response.Plot)
+        console.log(response.Poster)
+
+        var imageDiv = $("<div class='item col-lg-4'>");
+        
+        var infoDiv = $("<div class='item col-lg-8'>");
+
+        var title = response.Title
+
+        var h1 = $("<h1>").text(title);
+
+        var year = response.Year
+
+        var p1 = $("<p>").text("Years: " + year);
+
+        var actors = response.Actors
+
+        var p2 = $("<p>").text("Actors: " + actors);
+
+        var plot = response.Plot
+
+        var p3 = $("<p>").text("Plot: " + plot);
+
+        var imgURL = response.Poster
+
+        var img = $("<img>").attr("src", imgURL);
+
+        infoDiv.append(h1)
+        infoDiv.append(p1)
+        infoDiv.append(p2)
+        infoDiv.append(p3)
+        imageDiv.append(img)
+
+        $("#infoDisplay").prepend(infoDiv);
+        $("#infoDisplay").prepend(imageDiv);
+})
+}
+
+
 //click event for the buttons
 $(document).on("click", ".show", displayShowGifs);
+$(document).on("click", ".show", displayShowInfo);
 
 //run function to render buttons on initial page load
 renderButtons();
